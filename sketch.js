@@ -103,8 +103,8 @@ function monthDiff(a, b, y){
 }
 
 function dayDiff(a, b){
-  // a>=b
-  return a-b;
+  // a<=b
+  return b-a;
 }
 
 function isLeap(a){
