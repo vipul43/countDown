@@ -1,10 +1,6 @@
 let days, hours, minutes, seconds;
-let targetYear = 2021;
-let targetMonth = 9;
-let targetDay = 1;
-let targetHours = 0;
-let targetMinutes = 0;
-let targetSeconds = 0;
+let targetYear, targetMonth, targetDay, targetHours, targetMinutes, targetSeconds;
+
 function setup() {
   canvas = createCanvas(1200, 600);
   canvas.parent("canvas-container");
@@ -16,12 +12,49 @@ function draw() {
 }
 
 function displayTime(){
-  let timeLeft = getTimeLeft();
+  setVariables(2021, 5, 12, 0, 0, 0);
+  let acadtimeleft = getTimeLeft();
+  setVariables(2021, 5, 29, 0, 0, 0);
+  let gretimeleft = getTimeLeft();
+  setVariables(2021, 9, 1, 0, 0, 0);
+  let placementtimeleft = getTimeLeft();
+
   textFont('menlo');
-  textSize(75);
   textAlign(CENTER, CENTER);
   fill(255);
-  text(timeLeft, 0, 0, 1200, 600);
+  textSize(20);
+  text('For Acad Exam', 0, 0, 1200, 200);
+  textSize(75);
+  text(acadtimeleft, 0, 0, 1200, 300);
+
+  textFont('menlo');
+  textAlign(CENTER, CENTER);
+  fill(255);
+  textSize(20);
+  text('For GRE Exam', 0, 0, 1200, 500);
+  textSize(75);
+  text(gretimeleft, 0, 0, 1200, 600);
+
+  textFont('menlo');
+  textAlign(CENTER, CENTER);
+  fill(255);
+  textSize(20);
+  text('For Placement Exam', 0, 0, 1200, 800);
+  textSize(75);
+  text(placementtimeleft, 0, 0, 1200, 900);
+}
+
+function setVariables(year, month, day, hrs, mins, secs){
+  targetYear = year;
+  targetMonth = month;
+  targetDay = day;
+  targetHours = hrs;
+  targetMinutes = mins;
+  targetSeconds = secs;
+  days = 0;
+  hours = 0;
+  minutes = 0;
+  seconds = 0;
 }
 
 function getTimeLeft(){
@@ -64,6 +97,7 @@ function daysLeft(){
     if(month()<targetMonth){
       if(day()<targetDay){
         days+=monthDiff(month(), targetMonth, year());
+        days+=dayDiff(day(), targetDay);
       } else if(day()==targetDay){
         days+=monthDiff(month(), targetMonth, year());
       } else {
